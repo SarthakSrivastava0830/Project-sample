@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farmer Login</title>
+    <title>FarmEase Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-green-100 flex justify-center items-center min-h-screen">
     <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
         <div class="flex justify-center mb-4">
-            <img src="static/logo.webp" alt="Farmease Logo" class="h-16">
+            <img src="{{ url_for('static', filename='images/FarmEase logo.jpg') }}" alt="Farmease Logo" class="h-16">
+            
         </div>
         <h2 class="text-2xl font-semibold text-center text-green-700 mb-6">Farmer Login</h2>
 
@@ -30,7 +31,7 @@
             <p id="serverError" class="text-red-500 text-sm text-center hidden"></p>
         </form>
 
-        <p class="text-center text-gray-600 text-sm mt-4">A Smart Grievance Redressal System for Farmers</p>
+        <p class="text-center text-gray-600 text-sm mt-4">A Smart Grievance Redressal System for Government</p>
     </div>
 
     <script>

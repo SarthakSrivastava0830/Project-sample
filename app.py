@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-app.config['SECRET_KEY'] = 'aywuit98723hsiddufhg'  # JWT Token के लिए
+app.config['SECRET_KEY'] = 'aywuit98723hsiddufhg'  # JWT Token
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -36,6 +36,10 @@ class User(db.Model):
 with app.app_context():
     db.create_all()
 
+@app.route('/')
+def home():
+    return render_template("index.html")
+
 # ✅ Signup Page Route
 @app.route('/signup', methods=['GET'])
 def signup_page():
@@ -56,7 +60,7 @@ def signup():
     if not all([username, email, password, name, mobile, role]):
         return jsonify({"error": "All fields are required"}), 400
 
-    if role not in ["farmer", "admin"]:
+    if role not in ["User", "admin"]:
         return jsonify({"error": "Invalid role"}), 400
 
     # ✅ Check if user already exists
