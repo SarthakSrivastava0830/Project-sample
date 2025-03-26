@@ -39,6 +39,15 @@ with app.app_context():
 @app.route('/')
 def home():
     return render_template("index.html")
+@app.route('/home')
+def home_page():
+    return
+    render_template("index.html")
+
+@app.route('/about')
+def about_page():
+    return render_template("about.html")
+
 
 # ✅ Signup Page Route
 @app.route('/signup', methods=['GET'])

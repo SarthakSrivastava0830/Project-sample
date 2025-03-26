@@ -3,6 +3,18 @@
 
 <!-- Card Blog -->
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+  <!-- Hero Section -->
+<section class="hero bg-green-700 text-white py-16 text-center">
+  <div class="container mx-auto px-6">
+      <h1 class="text-4xl font-bold">Empowering Farmers with Data-Driven Solutions</h1>
+      <p class="mt-4 text-lg max-w-2xl mx-auto">
+          FarmEase is a smart grievance redressal system that leverages data analytics to streamline the resolution of farmers' complaints. 
+          We analyze government scheme datasets to ensure faster and more effective responses.
+      </p>
+      <a href="#features" class="mt-6 inline-block bg-white text-green-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">Explore Features</a>
+  </div>
+</section>
+
   <!-- Title -->
   <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
     <h2 class="text-2xl font-bold md:text-4xl md:leading-tight font-serif">Welcome To FarmEase</h2>
@@ -86,6 +98,27 @@
 {% block css %}
 <style>
 
+    .hero {
+        background: linear-gradient(to right, #4CAF50, #2E7D32);
+        color: white;
+        padding: 100px 20px;
+        text-align: center;
+    }
+
+    .cta-btn {
+        background: #ffcc00;
+        color: black;
+        padding: 12px 24px;
+        border-radius: 25px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .cta-btn:hover {
+        background: #ffaa00;
+        transform: scale(1.05);
+    }
 </style>
 {% endblock %}
 
