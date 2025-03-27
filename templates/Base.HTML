@@ -1,53 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <style>
-      body {
-          background-color: #ccffcc; /* Light Green */
-      }
-  </style>
-  
-    {% block css %}{% endblock %}
-</head>
-<body>
-   
-  
-    <header class="flex flex-wrap md:flex-col md:justify-start w-full bg-white border-b border-gray-200">
-    <div class="max-w-[85rem] mx-auto w-full px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between py-3">
-            <!-- Navigation Links -->
-            <nav class="flex items-center gap-6">
-                <a href="{{ url_for('home_page') }}" class="text-gray-700 hover:text-green-600">Home</a>
-                <a href="{{ url_for('about_page') }}" class="text-gray-700 hover:text-green-600">About</a>
-            
-            </nav>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-edu-meeting.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lightbox.css') }}">
 
-            <!-- Button Group -->
-            <div class="flex items-center gap-x-3">
-                <a href="{{ url_for('login_page') }}">
-                    <button class="bg-green-500 text-white px-4 py-2 rounded">Login</button>
-                </a>
-                <a href="{{ url_for('signup_page') }}">
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded">Signup</button>
-                </a>
+    {% block css %}
+
+    {% endblock %}
+
+</head>
+
+<body>
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">
+                            Edu Meeting
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                            <li><a href="meetings.html">Meetings</a></li>
+                            <li class="scroll-to-section"><a href="#apply">Apply Now</a></li>
+                            <li class="has-sub">
+                                <a href="javascript:void(0)">Pages</a>
+                                <ul class="sub-menu">
+                                    <li><a href="meetings.html">Upcoming Meetings</a></li>
+                                    <li><a href="meeting-details.html">Meeting Details</a></li>
+                                </ul>
+                            </li>
+                            <li class="scroll-to-section"><a href="#courses">Courses</a></li>
+                            <li class="scroll-to-section"><a href="#contact">Contact Us</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
 
     <main>
         {% block content %}
+
         {% endblock %}
     </main>
+
     <footer>
 
     </footer>
 
-    {% block js %}{% endblock %}
-    
+    {% block js %}
+
+    {% endblock %}
 </body>
+
 </html>
