@@ -1,27 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
+<!-- Title -->
+<div class=" welcome-section max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+  <h2 class="text-2xl font-bold md:text-4xl md:leading-tight font-serif">Welcome To FarmEase</h2>
+  <p class="mt-1 text-gray-600 font-serif">"Get Actionable Insights from Your Data".</p>
+</div>
 
+<!-- End Title -->
+ 
 <!-- Card Blog -->
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
   <!-- Hero Section -->
-<section class="hero bg-green-700 text-white py-16 text-center">
-  <div class="container mx-auto px-6">
-      <h1 class="text-4xl font-bold">Empowering Farmers with Data-Driven Solutions</h1>
-      <p class="mt-4 text-lg max-w-2xl mx-auto">
-          FarmEase is a smart grievance redressal system that leverages data analytics to streamline the resolution of farmers' complaints. 
-          We analyze government scheme datasets to ensure faster and more effective responses.
-      </p>
-      <a href="#features" class="mt-6 inline-block bg-white text-green-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">Explore Features</a>
-  </div>
-</section>
-
-  <!-- Title -->
-  <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
-    <h2 class="text-2xl font-bold md:text-4xl md:leading-tight font-serif">Welcome To FarmEase</h2>
-    <p class="mt-1 text-gray-600 font-serif">Here we provide the structured solutions of your UNMANAGED data.</p>
-</div>
-
-  <!-- End Title -->
+  <section class="hero bg-green-700 text-white py-16 text-center">
+    <div class="container mx-auto px-6">
+        <h1 class="text-4xl font-bold">Empowering Farmers with Data-Driven Solutions</h1>
+        <p class="mt-4 text-lg max-w-2xl mx-auto">
+            FarmEase is a smart grievance redressal system that leverages data analytics to streamline the resolution of farmers' complaints. 
+            We analyze government scheme datasets to ensure faster and more effective responses.
+        </p>
+        <a href="#features" class="mt-6 inline-block bg-white text-green-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">Explore Features</a>
+    </div>
+  </section>
+  
 
   <!-- Grid -->
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -37,7 +37,7 @@
           Dashboards
         </h3>
         <p class="mt-3 text-gray-800">
-           dashboards that help you visualize structured data and share insights
+           Dashboards that help you visualize structured data and share insights
         </p>
         <p class="mt-5 inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 group-hover:underline group-focus:underline font-medium">
           Read more
@@ -98,7 +98,8 @@
 {% block css %}
 <style>
 
-    .hero {
+<style>
+  .hero {
         background: linear-gradient(to right, #4CAF50, #2E7D32);
         color: white;
         padding: 100px 20px;
@@ -118,7 +119,8 @@
     .cta-btn:hover {
         background: #ffaa00;
         transform: scale(1.05);
-    }
+    }
+</style>
 </style>
 {% endblock %}
 
