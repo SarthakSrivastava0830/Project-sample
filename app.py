@@ -3,6 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 import jwt
 from datetime import datetime, timedelta, timezone
+import pandas as pd
+import plotly.express as px
+import plotly.io as pio
+import plotly.graph_objects as go
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -36,6 +40,9 @@ class User(db.Model):
 with app.app_context():
     db.create_all()
 
+# Load the dataset
+df = pd.read_csv()
+
 @app.route('/')
 def home():
     return render_template("index.html")
@@ -43,10 +50,6 @@ def home():
 @app.route('/home')
 def home_page():
     return render_template("index.html")
-
-@app.route('/crop-analysis')
-def crop_analysis():
-    return render_template("crop_analysis.html")
 
 @app.route('/about')
 def about_page():
@@ -126,29 +129,31 @@ def login():
     return jsonify({"error": "Invalid email, mobile, or password"}), 401
 
 
-# ✅ Dashboard Route (Farmer & Admin Redirection)
-@app.route('/dashboard', methods=['POST'])
-def dashboard():
-    token = request.headers.get("Authorization")
+#Graphs function
+def most_affected_crops():
+    fig1 = go.Figure()
+    top_crops = df['Crop'].value_counts().nlargest(10).reset_index()
+    top_crops.columns = ['Crop', 'Count']
 
-    if not token:
-        return jsonify({"error": "Token missing"}), 401
+    fig1 = px.bar(
+        top_crops,
+        x='Crop',
+        y='Count',
+        title='🌾 Most Affected Crops by Grievances',
+        labels={'Crop': 'Crop', 'Count': 'Number of Grievances'},
+        color='Count',
+        color_continuous_scale='YlGn'
+    )
+    graph1_html = pio.to_html(fig1, full_html=False)
+    return graph1_html
 
-    try:
-        decoded_token = jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])
-        role = decoded_token["role"]
 
-        if role == "farmer":
-            return jsonify({"redirect": "/farmer"}), 200
-        elif role == "admin":
-            return jsonify({"redirect": "/admin"}), 200
-        else:
-            return jsonify({"error": "Invalid role"}), 403
+#Analysis Pages
 
-    except jwt.ExpiredSignatureError:
-        return jsonify({"error": "Token expired"}), 401
-    except jwt.InvalidTokenError:
-        return jsonify({"error": "Invalid token"}), 401
+@app.route('/crop-analysis')
+def crop_analysis():
+    graph1 = most_affected_crops()
+    return render_template("crop_analysis.html",graph1=graph1)
 
 
 if __name__ == '__main__':
