@@ -39,10 +39,14 @@ with app.app_context():
 @app.route('/')
 def home():
     return render_template("index.html")
+
 @app.route('/home')
 def home_page():
-    return
-    render_template("index.html")
+    return render_template("index.html")
+
+@app.route('/crop-analysis')
+def crop_analysis():
+    return render_template("crop_analysis.html")
 
 @app.route('/about')
 def about_page():

@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.plot.ly/plotly-latest.min.css">
+<style>
+    .analysis-section {
+        padding: 80px 0;
+        background-color: #f7f7f7;
+    }
+    .graph-container {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        margin-bottom: 40px;
+        transition: transform 0.3s ease;
+    }
+    .graph-container:hover {
+        transform: translateY(-5px);
+    }
+    .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .section-title h2 {
+        font-size: 36px;
+        color: #03a4ed;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    .section-title p {
+        color: #777;
+        font-size: 18px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .graph-description {
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #03a4ed;
+    }
+    .graph-description h3 {
+        color: #03a4ed;
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    .graph-description ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    .graph-description li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+    }
+    .graph-description li:before {
+        content: "•";
+        color: #03a4ed;
+        position: absolute;
+        left: 0;
+    }
+    .custom-header {
+        background: white;
+        padding: 20px 0;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+    .home-button {
+        background: #03a4ed;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s ease;
+        float: right;
+    }
+    .home-button:hover {
+        background: #0288c3;
+        color: white;
+    }
+    .header-title {
+        margin: 0;
+        color: #03a4ed;
+        float: left;
+    }
+    .header-container {
+        overflow: hidden;
+    }
+    .main-content {
+        margin-top: 80px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="custom-header">
+    <div class="container">
+        <div class="header-container">
+            <h3 class="header-title">Crop Analysis Dashboard</h3>
+            <a href="{{ url_for('home') }}" class="home-button">
+                <i class="fa fa-home"></i> Back to Home
+            </a>
+        </div>
+    </div>
+</div>
+
+<section class="analysis-section main-content">
+    <div class="container">
+        <div class="section-title">
+            <h2>Crop Analysis Insights</h2>
+            <p>Comprehensive analysis of crop-related data and grievances across different sectors</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="graph-container">
+                    <div id="crop-bar-graph"></div>
+                    <div class="graph-description">
+                        <h3>🌾 Most Affected Crops Analysis</h3>
+                        <ul>
+                            <li>Visualizes the top 10 crops with the highest number of grievances</li>
+                            <li>Color intensity indicates the severity of issues</li>
+                            <li>Helps identify which crops need immediate attention</li>
+                            <li>Useful for prioritizing agricultural support programs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="graph-container">
+                    <div id="category-pie-graph"></div>
+                    <div class="graph-description">
+                        <h3>🍎 Crop Category Distribution</h3>
+                        <ul>
+                            <li>Shows the distribution of different crop categories</li>
+                            <li>Includes fruits, cereals, pulses, and other categories</li>
+                            <li>Helps understand the diversity of agricultural production</li>
+                            <li>Useful for sector-specific policy planning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="graph-container">
+                    <div id="crop-sector-heatmap"></div>
+                    <div class="graph-description">
+                        <h3>🔥 Crop vs Sector Heatmap</h3>
+                        <ul>
+                            <li>Interactive heatmap showing the relationship between crops and sectors</li>
+                            <li>Darker colors indicate higher concentration of issues</li>
+                            <li>Helps identify sector-specific challenges for different crops</li>
+                            <li>Useful for targeted intervention planning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+    // Sample data - Replace with actual data from your backend
+    const cropBarData = {
+        x: ['Wheat', 'Rice', 'Corn', 'Soybeans', 'Cotton', 'Sugarcane', 'Potato', 'Tomato', 'Onion', 'Mango'],
+        y: [150, 120, 100, 90, 80, 70, 60, 50, 40, 30],
+        type: 'bar',
+        marker: {
+            color: '#03a4ed'
+        }
+    };
+
+    const categoryPieData = {
+        values: [35, 25, 20, 15, 5],
+        labels: ['Cereals', 'Fruits', 'Pulses', 'Vegetables', 'Others'],
+        type: 'pie',
+        hole: 0.4,
+        marker: {
+            colors: ['#03a4ed', '#f5a623', '#7ed321', '#d0021b', '#9013fe']
+        }
+    };
+
+    const cropSectorData = {
+        z: [
+            [10, 20, 30, 15, 25],
+            [15, 25, 35, 20, 30],
+            [20, 30, 40, 25, 35],
+            [25, 35, 45, 30, 40],
+            [30, 40, 50, 35, 45]
+        ],
+        x: ['Production', 'Storage', 'Transportation', 'Marketing', 'Processing'],
+        y: ['Wheat', 'Rice', 'Corn', 'Soybeans', 'Cotton'],
+        type: 'heatmap',
+        colorscale: 'YlOrRd'
+    };
+
+    // Layout configurations
+    const layout = {
+        margin: { t: 30, r: 30, b: 40, l: 40 },
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {
+            family: 'Poppins, sans-serif'
+        }
+    };
+
+    // Create the plots
+    Plotly.newPlot('crop-bar-graph', [cropBarData], {
+        ...layout,
+        title: '🌾 Most Affected Crops by Grievances',
+        yaxis: { title: 'Number of Grievances' }
+    });
+
+    Plotly.newPlot('category-pie-graph', [categoryPieData], {
+        ...layout,
+        title: '🍎 Crop Category Distribution'
+    });
+
+    Plotly.newPlot('crop-sector-heatmap', [cropSectorData], {
+        ...layout,
+        title: '🔥 Crop vs Sector Heatmap'
+    });
+
+    // Make plots responsive
+    window.addEventListener('resize', function() {
+        Plotly.Plots.resize('crop-bar-graph');
+        Plotly.Plots.resize('category-pie-graph');
+        Plotly.Plots.resize('crop-sector-heatmap');
+    });
+</script>
+{% endblock %}
