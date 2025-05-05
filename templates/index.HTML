@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="TemplateMo">
   
-  <title>Education Meeting HTML5 Template</title>
+  <title>FarmEase HTML5 Template</title>
   
   <!-- Bootstrap core CSS -->
   <!-- <link href="" rel="stylesheet"> -->
@@ -39,7 +39,7 @@ https://templatemo.com/tm-569-edu-meeting
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section main-banner" id="top" data-section="section1">
     <video autoplay muted loop id="bg-video">
-      <source src="static/images/course-video.mp4" type="video/mp4" />
+      <source src="static/images/bgvdo .mp4" type="video/mp4" />
     </video>
 
     <div class="video-overlay header-text">
@@ -47,15 +47,12 @@ https://templatemo.com/tm-569-edu-meeting
         <div class="row">
           <div class="col-lg-12">
             <div class="caption">
-              <h6>Hello Students</h6>
-              <h2>Welcome to Education</h2>
-              <p>This is an edu meeting HTML CSS template provided by <a rel="nofollow"
-                  href="https://templatemo.com/page/1" target="_blank">TemplateMo website</a>. This is a Bootstrap
-                v5.1.3 layout. The video background is taken from Pexels website, a group of young people by <a
-                  rel="nofollow" href="https://www.pexels.com/@pressmaster" target="_blank">Pressmaster</a>.</p>
-              <div class="main-button-red">
-                <div class="scroll-to-section"><a href="#contact">Join Us Now!</a></div>
-              </div>
+              
+              <h2>Welcome to FarmEase</h2>
+              <p>FarmEase, a smart grievance redressal system aimed at improving the resolution of farmer complaints using data analytics. It leverages structured analysis of government grievance datasets to identify trends, optimize issue categorization, and provide actionable insights. The goal is to reduce response delays, improve transparency, and support policy decisions through real-time dashboards.
+
+                </p>
+              
             </div>
           </div>
         </div>
@@ -75,8 +72,8 @@ https://templatemo.com/tm-569-edu-meeting
                 <img src="static/images/service-icon-01.png" alt="">
               </div>
               <div class="down-content">
-                <h4>Best Education</h4>
-                <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non vestibulum.</p>
+                <h4><a href="{{ url_for('crop_analysis') }}">Crop Analysis</a></h4>
+                <p>Get detailed analysis and recommendations for your crops. Make informed decisions about planting, harvesting, and crop management.</p>
               </div>
             </div>
 
@@ -85,8 +82,8 @@ https://templatemo.com/tm-569-edu-meeting
                 <img src="static/images/service-icon-02.png" alt="">
               </div>
               <div class="down-content">
-                <h4>Best Teachers</h4>
-                <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non vestibulum.</p>
+                <h4><a href="{{ url_for('query_Type') }}">Query Type Analysis</a></h4>
+                <p>Explore different types of agricultural queries and their distribution. Understand the most common questions farmers ask.</p>
               </div>
             </div>
 
@@ -95,8 +92,8 @@ https://templatemo.com/tm-569-edu-meeting
                 <img src="static/images/service-icon-03.png" alt="">
               </div>
               <div class="down-content">
-                <h4>Best Students</h4>
-                <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non vestibulum.</p>
+                <h4><a href="{{ url_for('overview') }}">Overview Dashboard</a></h4>
+                <p>Get a comprehensive overview of all farmer grievances, including state-wise distribution, sector analysis, and monthly trends.</p>
               </div>
             </div>
 
@@ -105,8 +102,8 @@ https://templatemo.com/tm-569-edu-meeting
                 <img src="static/images/service-icon-02.png" alt="">
               </div>
               <div class="down-content">
-                <h4>Online Meeting</h4>
-                <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non vestibulum.</p>
+                <h4><a href="{{ url_for('insights') }}">Insights</a></h4>
+                <p>Access detailed insights and analytics about agricultural data. Make data-driven decisions for better farming outcomes.</p>
               </div>
             </div>
 
@@ -115,10 +112,29 @@ https://templatemo.com/tm-569-edu-meeting
                 <img src="static/images/service-icon-03.png" alt="">
               </div>
               <div class="down-content">
-                <h4>Best Networking</h4>
-                <p>Suspendisse tempor mauris a sem elementum bibendum. Praesent facilisis massa non vestibulum.</p>
+                <h4><a href="{{ url_for('region_analysis') }}">Region Analysis</a></h4>
+                <p>Explore district-wise grievance distribution and regional patterns. Identify hotspots and understand geographical trends in agricultural issues.</p>
               </div>
             </div>
+            <div class="item">
+              <div class="icon">
+                <img src="static/images/service-icon-03.png" alt="">
+              </div>
+              <div class="down-content">
+                <h4><a href="{{ url_for('resolution_insights') }}">Resolution Insights</a></h4>
+                <p>Analyze the resolution status of grievances across different regions. Track resolved vs. unresolved issues and identify areas needing attention.</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="icon">
+                <img src="static/images/service-icon-03.png" alt="">
+              </div>
+              <div class="down-content">
+                <h4><a href="{{ url_for('trend_analysis') }}">Trend Analysis</a></h4>
+                <p>Analyze monthly and yearly trends in agricultural queries. Track query patterns over time and identify seasonal variations in farmer concerns.</p>
+              </div>
+            </div>
+
 
           </div>
         </div>
@@ -135,22 +151,14 @@ https://templatemo.com/tm-569-edu-meeting
           <div class="row">
             <div class="col-lg-12">
               <div class="item">
-                <h3>APPLY FOR BACHELOR DEGREE</h3>
-                <p>You are allowed to use this edu meeting CSS template for your school or university or business. You
-                  can feel free to modify or edit this layout.</p>
-                <div class="main-button-red">
-                  <div class="scroll-to-section"><a href="#contact">Join Us Now!</a></div>
-                </div>
+                <h3>FARMER SUPPORT SERVICES</h3>
+                <p>FarmEase provides comprehensive support services for farmers, including crop analysis, market insights, and grievance redressal. Our platform helps you make informed decisions about your agricultural practices.</p>
               </div>
             </div>
             <div class="col-lg-12">
               <div class="item">
-                <h3>APPLY FOR BACHELOR DEGREE</h3>
-                <p>You are not allowed to redistribute the template ZIP file on any other template website. Please
-                  contact us for more information.</p>
-                <div class="main-button-yellow">
-                  <div class="scroll-to-section"><a href="#contact">Join Us Now!</a></div>
-                </div>
+                <h3>DATA-DRIVEN INSIGHTS</h3>
+                <p>Access real-time analytics and trends about agricultural patterns, crop performance, and market conditions. Our platform uses advanced data analysis to provide actionable insights for better farming outcomes.</p>
               </div>
             </div>
           </div>
@@ -159,67 +167,53 @@ https://templatemo.com/tm-569-edu-meeting
           <div class="accordions is-first-expanded">
             <article class="accordion">
               <div class="accordion-head">
-                <span>About Edu Meeting HTML Template</span>
+                <span>About FarmEase Platform</span>
                 <span class="icon">
                   <i class="icon fa fa-chevron-right"></i>
                 </span>
               </div>
               <div class="accordion-body">
                 <div class="content">
-                  <p>If you want to get the latest collection of HTML CSS templates for your websites, you may visit <a
-                      rel="nofollow" href="https://www.toocss.com/" target="_blank">Too CSS website</a>. If you need a
-                    working contact form script, please visit <a href="https://templatemo.com/contact"
-                      target="_parent">our contact page</a> for more info.</p>
+                  <p>FarmEase is a comprehensive agricultural platform designed to empower farmers with data-driven insights and efficient grievance redressal. Our system helps streamline agricultural processes and improve farming outcomes through advanced analytics.</p>
                 </div>
               </div>
             </article>
             <article class="accordion">
               <div class="accordion-head">
-                <span>HTML CSS Bootstrap Layout</span>
+                <span>Our Services</span>
                 <span class="icon">
                   <i class="icon fa fa-chevron-right"></i>
                 </span>
               </div>
               <div class="accordion-body">
                 <div class="content">
-                  <p>Etiam posuere metus orci, vel consectetur elit imperdiet eu. Cras ipsum magna, maximus at semper
-                    sit amet, eleifend eget neque. Nunc facilisis quam purus, sed vulputate augue interdum vitae.
-                    Aliquam a elit massa.<br><br>
-                    Nulla malesuada elit lacus, ac ultricies massa varius sed. Etiam eu metus eget nibh consequat
-                    aliquet. Proin fringilla, quam at euismod porttitor, odio odio tempus ligula, ut feugiat ex erat nec
-                    mauris. Donec viverra velit eget lectus sollicitudin tincidunt.</p>
+                  <p>We offer a range of services including crop analysis, market trend analysis, grievance tracking, and resolution insights. Our platform helps farmers make informed decisions and provides government agencies with valuable data for policy making.</p>
                 </div>
               </div>
             </article>
             <article class="accordion">
               <div class="accordion-head">
-                <span>Please tell your friends</span>
+                <span>Data Analytics</span>
                 <span class="icon">
                   <i class="icon fa fa-chevron-right"></i>
                 </span>
               </div>
               <div class="accordion-body">
                 <div class="content">
-                  <p>Ut vehicula mauris est, sed sodales justo rhoncus eu. Morbi porttitor quam velit, at ullamcorper
-                    justo suscipit sit amet. Quisque at suscipit mi, non efficitur velit.<br><br>
-                    Cras et tortor semper, placerat eros sit amet, porta est. Mauris porttitor sapien et quam volutpat
-                    luctus. Nullam sodales ipsum ac neque ultricies varius.</p>
+                  <p>Our advanced analytics system processes agricultural data to identify patterns, predict trends, and provide actionable insights. This helps in optimizing crop yields, improving resource allocation, and enhancing overall agricultural productivity.</p>
                 </div>
               </div>
             </article>
             <article class="accordion last-accordion">
               <div class="accordion-head">
-                <span>Share this to your colleagues</span>
+                <span>Grievance Redressal</span>
                 <span class="icon">
                   <i class="icon fa fa-chevron-right"></i>
                 </span>
               </div>
               <div class="accordion-body">
                 <div class="content">
-                  <p>Maecenas suscipit enim libero, vel lobortis justo condimentum id. Interdum et malesuada fames ac
-                    ante ipsum primis in faucibus.<br><br>
-                    Sed eleifend metus sit amet magna tristique, posuere laoreet arcu semper. Nulla pellentesque ut
-                    tortor sit amet maximus. In eu libero ullamcorper, semper nisi quis, convallis nisi.</p>
+                  <p>Our efficient grievance redressal system ensures timely resolution of farmer complaints. We track and analyze grievance patterns to identify systemic issues and help improve agricultural policies and support systems.</p>
                 </div>
               </div>
             </article>
@@ -235,20 +229,20 @@ https://templatemo.com/tm-569-edu-meeting
         <div class="col-lg-6">
           <div class="row">
             <div class="col-lg-12">
-              <h2>A Few Facts About Our University</h2>
+              <h2>Key Agricultural Statistics</h2>
             </div>
             <div class="col-lg-6">
               <div class="row">
                 <div class="col-12">
                   <div class="count-area-content percentage">
-                    <div class="count-digit">94</div>
-                    <div class="count-title">Succesed Students</div>
+                    <div class="count-digit">85</div>
+                    <div class="count-title">Grievance Resolution Rate</div>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="count-area-content">
-                    <div class="count-digit">126</div>
-                    <div class="count-title">Current Teachers</div>
+                    <div class="count-digit">24</div>
+                    <div class="count-title">Hours Average Resolution Time</div>
                   </div>
                 </div>
               </div>
@@ -257,14 +251,14 @@ https://templatemo.com/tm-569-edu-meeting
               <div class="row">
                 <div class="col-12">
                   <div class="count-area-content new-students">
-                    <div class="count-digit">2345</div>
-                    <div class="count-title">New Students</div>
+                    <div class="count-digit">5000</div>
+                    <div class="count-title">Active Farmers</div>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="count-area-content">
-                    <div class="count-digit">32</div>
-                    <div class="count-title">Awards</div>
+                    <div class="count-digit">15</div>
+                    <div class="count-title">Major Crops Supported</div>
                   </div>
                 </div>
               </div>
@@ -325,23 +319,23 @@ https://templatemo.com/tm-569-edu-meeting
           </div>
         </div>
         <div class="col-lg-3">
-          <div class="right-info">
+          <div class="right-info" style="min-width: 300px;">
             <ul>
               <li>
                 <h6>Phone Number</h6>
-                <span>010-020-0340</span>
+                <span>8081495967</span>
               </li>
               <li>
                 <h6>Email Address</h6>
-                <span>info@meeting.edu</span>
+                <span style="word-break: break-all;">sarthaksrivastava0802@gmail.com</span>
               </li>
               <li>
                 <h6>Street Address</h6>
-                <span>Rio de Janeiro - RJ, 22795-008, Brazil</span>
+                <span>Lucknow, Uttar Pradesh, India</span>
               </li>
               <li>
                 <h6>Website URL</h6>
-                <span>www.meeting.edu</span>
+                <span>www.farmease.com</span>
               </li>
             </ul>
           </div>
@@ -349,7 +343,7 @@ https://templatemo.com/tm-569-edu-meeting
       </div>
     </div>
     <div class="footer">
-      <p>Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved.</p>
+      <p>FarmEase</p>
     </div>
   </section>
   {% endblock %}

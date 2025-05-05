@@ -1,0 +1,480 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    :root {
+        --primary-color: #6c5ce7;
+        --secondary-color: #a55eea;
+        --accent-color: #00cec9;
+        --text-color: #ffffff;
+        --light-text: #a0a0a0;
+        --background: #1a1a1a;
+        --card-bg: #2d2d2d;
+        --border-color: #404040;
+    }
+
+    .about-section {
+        padding: 160px 20px;
+        background: var(--background);
+        color: var(--text-color);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .hero-section {
+        text-align: center;
+        margin-bottom: 60px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+    }
+
+    .hero-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .main-title {
+        font-weight: 800;
+        font-size: 48px;
+        color: var(--accent-color);
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        position: relative;
+        display: inline-block;
+    }
+
+    .main-title::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 4px;
+        bottom: -10px;
+        left: 0;
+        background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+        transition: width 0.8s ease;
+    }
+
+    .main-title:hover::after {
+        width: 100%;
+    }
+
+    .title-underline {
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+        margin: 0 auto 30px;
+        transform: scaleX(0);
+        transition: transform 0.8s ease;
+    }
+
+    .title-underline.visible {
+        transform: scaleX(1);
+    }
+
+    .hero-text {
+        max-width: 800px;
+        margin: 20px auto;
+        font-size: 20px;
+        line-height: 1.6;
+        color: var(--light-text);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s ease 0.2s;
+    }
+
+    .hero-text.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .metrics-section {
+        margin: 60px 0;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+    }
+
+    .metrics-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .metrics-section h2 {
+        text-align: center;
+        color: var(--accent-color);
+        margin-bottom: 40px;
+        font-size: 36px;
+    }
+
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .metric-card {
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        text-align: center;
+        border: 1px solid var(--border-color);
+        transform: translateY(0);
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .metric-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        border-color: var(--accent-color);
+    }
+
+    .metric-card i {
+        font-size: 40px;
+        color: var(--accent-color);
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .metric-card:hover i {
+        transform: scale(1.2);
+        color: var(--primary-color);
+    }
+
+    .metric-card h3 {
+        color: var(--accent-color);
+        font-size: 24px;
+        margin-bottom: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .metric-card:hover h3 {
+        color: var(--primary-color);
+    }
+
+    .metric-card p {
+        color: var(--light-text);
+        transition: all 0.3s ease;
+    }
+
+    .metric-card:hover p {
+        color: var(--text-color);
+    }
+
+    .sector-section {
+        margin: 60px 0;
+        background: var(--card-bg);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        border: 1px solid var(--border-color);
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+    }
+
+    .sector-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .sector-section h2 {
+        text-align: center;
+        color: var(--accent-color);
+        margin-bottom: 30px;
+        font-size: 32px;
+    }
+
+    .sector-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .sector-card {
+        padding: 20px;
+        border-left: 4px solid var(--accent-color);
+        background: rgba(0,0,0,0.2);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .sector-card:hover {
+        transform: translateX(10px);
+        background: rgba(0,0,0,0.3);
+        border-left-color: var(--primary-color);
+    }
+
+    .sector-card h3 {
+        color: var(--accent-color);
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+    }
+
+    .sector-card:hover h3 {
+        color: var(--primary-color);
+    }
+
+    .sector-card ul {
+        color: var(--light-text);
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .sector-card li {
+        margin-bottom: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .sector-card:hover li {
+        color: var(--text-color);
+        transform: translateX(5px);
+    }
+
+    .insights-section {
+        margin-top: 60px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+    }
+
+    .insights-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .insights-section h2 {
+        text-align: center;
+        color: var(--accent-color);
+        margin-bottom: 30px;
+        font-size: 32px;
+    }
+
+    .insights-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .insight-card {
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        border: 1px solid var(--border-color);
+        transform: translateY(0);
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .insight-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        border-color: var(--accent-color);
+    }
+
+    .insight-card i {
+        font-size: 32px;
+        color: var(--accent-color);
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .insight-card:hover i {
+        transform: scale(1.2) rotate(10deg);
+        color: var(--primary-color);
+    }
+
+    .insight-card h3 {
+        color: var(--accent-color);
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+    }
+
+    .insight-card:hover h3 {
+        color: var(--primary-color);
+    }
+
+    .insight-card p {
+        color: var(--light-text);
+        line-height: 1.6;
+        transition: all 0.3s ease;
+    }
+
+    .insight-card:hover p {
+        color: var(--text-color);
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    .pulse-animation {
+        animation: pulse 2s infinite;
+    }
+</style>
+
+<section class="about-section">
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="main-title">About FarmEase</h1>
+            <div class="title-underline"></div>
+            <p class="hero-text">
+                <strong style="color: var(--accent-color);">FarmEase</strong> is a comprehensive agricultural grievance management system that leverages 
+                <span style="color: var(--accent-color); font-weight: 600;">advanced analytics</span> to analyze and address farmers' concerns across 
+                multiple sectors including Agriculture, Horticulture, Animal Husbandry, and Fisheries. Our platform helps government bodies 
+                identify and prioritize grievances based on location, sector, and urgency.
+            </p>
+        </div>
+
+        <!-- Key Metrics Section -->
+        <div class="metrics-section">
+            <h2>Key Insights</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <i class="fas fa-map-marker-alt pulse-animation"></i>
+                    <h3>75+ Districts</h3>
+                    <p>Covering major agricultural regions across multiple districts</p>
+                </div>
+                
+                <div class="metric-card">
+                    <i class="fas fa-seedling pulse-animation"></i>
+                    <h3>4 Key Sectors</h3>
+                    <p>Agriculture, Horticulture, Animal Husbandry, and Fisheries</p>
+                </div>
+                
+                <div class="metric-card">
+                    <i class="fas fa-chart-line pulse-animation"></i>
+                    <h3>Real-time Analytics</h3>
+                    <p>Monthly tracking of grievance patterns and resolution rates</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sector Analysis Section -->
+        <div class="sector-section">
+            <h2>Sector-wise Focus Areas</h2>
+            <div class="sector-grid">
+                <div class="sector-card">
+                    <h3>Agriculture</h3>
+                    <ul>
+                        <li>• Crop Management</li>
+                        <li>• Soil Health</li>
+                        <li>• Pest Control</li>
+                    </ul>
+                </div>
+                
+                <div class="sector-card">
+                    <h3>Horticulture</h3>
+                    <ul>
+                        <li>• Fruit Production</li>
+                        <li>• Vegetable Farming</li>
+                        <li>• Floriculture</li>
+                    </ul>
+                </div>
+                
+                <div class="sector-card">
+                    <h3>Animal Husbandry</h3>
+                    <ul>
+                        <li>• Livestock Management</li>
+                        <li>• Dairy Farming</li>
+                        <li>• Animal Health</li>
+                    </ul>
+                </div>
+                
+                <div class="sector-card">
+                    <h3>Fisheries</h3>
+                    <ul>
+                        <li>• Aquaculture</li>
+                        <li>• Fish Processing</li>
+                        <li>• Market Access</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data-Driven Insights Section -->
+        <div class="insights-section">
+            <h2>Data-Driven Insights</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Regional Analysis</h3>
+                    <p>Comprehensive analysis of grievance patterns across 75+ districts, helping identify areas needing immediate attention.</p>
+                </div>
+
+                <div class="insight-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Trend Analysis</h3>
+                    <p>Monthly tracking of grievance patterns to identify seasonal trends and predict future requirements.</p>
+                </div>
+
+                <div class="insight-card">
+                    <i class="fas fa-map"></i>
+                    <h3>Resource Optimization</h3>
+                    <p>Data-driven approach to optimize resource allocation and improve grievance resolution efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Observe all sections
+        document.querySelectorAll('.hero-section, .metrics-section, .sector-section, .insights-section, .title-underline, .hero-text').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Add hover effects to metric cards
+        document.querySelectorAll('.metric-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add hover effects to sector cards
+        document.querySelectorAll('.sector-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(10px)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Add hover effects to insight cards
+        document.querySelectorAll('.insight-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    });
+</script>
+{% endblock %}

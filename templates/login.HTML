@@ -1,81 +1,185 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FarmEase Login</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="FarmEase">
+  
+  <title>FarmEase - Login</title>
 </head>
-<body class="bg-green-100 flex justify-center items-center min-h-screen">
-    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-        <div class="flex justify-center mb-4">
-            <img src="{{ url_for('static', filename='images/FarmEase logo.jpg') }}" alt="Farmease Logo" class="h-16">
-            
+
+<body>
+  {% block content %}
+  <!-- ***** Main Banner Area Start ***** -->
+  <section class="section main-banner" id="top" data-section="section1" style="min-height: 200px;">
+    <video autoplay muted loop id="bg-video">
+      <source src="static/images/bgvdo .mp4" type="video/mp4" />
+    </video>
+
+    <div class="video-overlay header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="caption" style="padding: 20px 0;">
+              <h2 style="font-size: 1.8rem; margin-bottom: 0.3rem;">Welcome to FarmEase</h2>
+              <p style="font-size: 0.9rem;">Login to access your personalized agricultural dashboard and services</p>
+            </div>
+          </div>
         </div>
-        <h2 class="text-2xl font-semibold text-center text-green-700 mb-6">Farmer Login</h2>
-
-        <form id="loginForm" class="space-y-4">
-            <input type="email" name="email" id="email" placeholder="Email" required
-                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none">
-            <p id="emailError" class="text-red-500 text-sm hidden">Email is required</p>
-
-            <input type="password" name="password" id="password" placeholder="Password" required
-                class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none">
-            <p id="passwordError" class="text-red-500 text-sm hidden">Password is required</p>
-
-            <button type="submit"
-                class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition">
-                Login
-            </button>
-
-            <p id="serverError" class="text-red-500 text-sm text-center hidden"></p>
-        </form>
-
-        <p class="text-center text-gray-600 text-sm mt-4">A Smart Grievance Redressal System for Government</p>
+      </div>
     </div>
+  </section>
+  <!-- ***** Main Banner Area End ***** -->
 
-    <script>
-        document.getElementById("loginForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
-            
-            let email = document.getElementById("email").value;
-            let password = document.getElementById("password").value;
-            let emailError = document.getElementById("emailError");
-            let passwordError = document.getElementById("passwordError");
-            let serverError = document.getElementById("serverError");
+  <section class="contact-us" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center">
+          <div class="row">
+            <div class="col-lg-12">
+              <form id="login" action="" method="post">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #f4f1f1;">Login to Your Account</h2>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset style="margin-bottom: 2rem;">
+                      <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email..." required="" 
+                        style="width: 100%; height: 50px; padding: 0 20px; border: 2px solid #ddd; border-radius: 25px; 
+                        background-color: #f8f8f8; font-size: 16px; transition: all 0.3s ease;">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset style="margin-bottom: 2rem;">
+                      <input name="password" type="password" id="password" placeholder="Your Password..." required="" 
+                        style="width: 100%; height: 50px; padding: 0 20px; border: 2px solid #ddd; border-radius: 25px; 
+                        background-color: #f8f8f8; font-size: 16px; transition: all 0.3s ease;">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <button type="submit" id="form-submit" class="button" 
+                        style="width: 100%; height: 50px; background-color: #4CAF50; color: white; 
+                        border: none; border-radius: 25px; font-size: 18px; font-weight: bold; 
+                        cursor: pointer; transition: all 0.3s ease;">LOGIN NOW</button>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="text-center" style="margin-top: 2rem;">
+                      <p style="font-size: 16px; color: #666;">Don't have an account? 
+                        <a href="/signup" style="color: #4CAF50; text-decoration: none; font-weight: bold;">Register here</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="features-grid" style="background-color: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #333; font-size: 24px;">Why Choose FarmEase?</h3>
+            <div class="row" style="margin: 0;">
+              <div class="col-md-6" style="padding: 10px;">
+                <div class="feature-card" style="background-color: #f8f8f8; border-radius: 15px; padding: 20px; height: 100%; transition: all 0.3s ease; cursor: pointer; border: 1px solid #ddd;">
+                  <div class="feature-icon" style="text-align: center; margin-bottom: 15px;">
+                    <i class="fa fa-chart-line" style="font-size: 30px; color: #4CAF50;"></i>
+                  </div>
+                  <h4 style="text-align: center; color: #333; margin-bottom: 10px;">Crop Analysis</h4>
+                  <p style="text-align: center; color: #666; margin: 0; line-height: 1.5;">Get detailed insights about your crops and optimize your farming practices.</p>
+                </div>
+              </div>
+              <div class="col-md-6" style="padding: 10px;">
+                <div class="feature-card" style="background-color: #f8f8f8; border-radius: 15px; padding: 20px; height: 100%; transition: all 0.3s ease; cursor: pointer; border: 1px solid #ddd;">
+                  <div class="feature-icon" style="text-align: center; margin-bottom: 15px;">
+                    <i class="fa fa-tasks" style="font-size: 30px; color: #4CAF50;"></i>
+                  </div>
+                  <h4 style="text-align: center; color: #333; margin-bottom: 10px;">Grievance Tracking</h4>
+                  <p style="text-align: center; color: #666; margin: 0; line-height: 1.5;">Track and manage your agricultural concerns efficiently.</p>
+                </div>
+              </div>
+              <div class="col-md-6" style="padding: 10px;">
+                <div class="feature-card" style="background-color: #f8f8f8; border-radius: 15px; padding: 20px; height: 100%; transition: all 0.3s ease; cursor: pointer; border: 1px solid #ddd;">
+                  <div class="feature-icon" style="text-align: center; margin-bottom: 15px;">
+                    <i class="fa fa-chart-bar" style="font-size: 30px; color: #4CAF50;"></i>
+                  </div>
+                  <h4 style="text-align: center; color: #333; margin-bottom: 10px;">Market Trends</h4>
+                  <p style="text-align: center; color: #666; margin: 0; line-height: 1.5;">Stay updated with real-time market prices and trends.</p>
+                </div>
+              </div>
+              <div class="col-md-6" style="padding: 10px;">
+                <div class="feature-card" style="background-color: #f8f8f8; border-radius: 15px; padding: 20px; height: 100%; transition: all 0.3s ease; cursor: pointer; border: 1px solid #ddd;">
+                  <div class="feature-icon" style="text-align: center; margin-bottom: 15px;">
+                    <i class="fa fa-cloud-sun" style="font-size: 30px; color: #4CAF50;"></i>
+                  </div>
+                  <h4 style="text-align: center; color: #333; margin-bottom: 10px;">Weather Updates</h4>
+                  <p style="text-align: center; color: #666; margin: 0; line-height: 1.5;">Get accurate weather forecasts for better planning.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            // Hide all previous errors
-            emailError.classList.add("hidden");
-            passwordError.classList.add("hidden");
-            serverError.classList.add("hidden");
-            
-            if (!email) emailError.classList.remove("hidden");
-            if (!password) passwordError.classList.remove("hidden");
-            if (!email || !password) return;
-            
-            try {
-                let response = await fetch("/login", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email, password })
+  {% endblock %}
+
+  {% block js %}
+  <!-- Scripts -->
+  <script src="static/vendor/jquery/jquery.min.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/js/isotope.min.js"></script>
+  <script src="static/js/owl-carousel.js"></script>
+  <script src="static/js/lightbox.js"></script>
+  <script src="static/js/tabs.js"></script>
+  <script src="static/js/video.js"></script>
+  <script src="static/js/slick-slider.js"></script>
+  <script src="static/js/custom.js"></script>
+  <script>
+    // Feature card hover effect
+    $(document).ready(function() {
+        $('.feature-card').hover(
+            function() {
+                $(this).css({
+                    'transform': 'translateY(-5px)',
+                    'box-shadow': '0 5px 15px rgba(0,0,0,0.1)',
+                    'border-color': '#4CAF50'
                 });
-                
-                let data = await response.json();
-            console.log(data);
-            
-                if (response.ok) {
-                    localStorage.setItem("token", data.token);
-                    let payload = JSON.parse(atob(data.token.split(".")[1]));
-                    window.location.href = payload.role === "farmer" ? "/farmer" : "/admin";
-                } else {
-                    serverError.textContent = data.message || "Login failed";
-                    serverError.classList.remove("hidden");
-                }
-            } catch (error) {
-                serverError.textContent = "Something went wrong. Please try again.";
-                serverError.classList.remove("hidden");
+            },
+            function() {
+                $(this).css({
+                    'transform': 'translateY(0)',
+                    'box-shadow': 'none',
+                    'border-color': '#ddd'
+                });
+            }
+        );
+
+        // Form input animation
+        $('input').focus(function() {
+            $(this).parent().addClass('focused');
+        }).blur(function() {
+            if ($(this).val() === '') {
+                $(this).parent().removeClass('focused');
             }
         });
-    </script>
+
+        // Button hover effect
+        $('.button').hover(
+            function() {
+                $(this).addClass('hover');
+            },
+            function() {
+                $(this).removeClass('hover');
+            }
+        );
+    });
+  </script>
+  {% endblock %}
 </body>
+
 </html>

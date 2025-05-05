@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a55eea;
+            --accent-color: #00cec9;
+            --text-color: #ffffff;
+            --light-text: #a0a0a0;
+            --background: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --border-color: #404040;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-wrapper {
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Top Bar Styles */
+        .top-bar {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .back-button {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            grid-column: span 3;
+            border: 1px solid var(--border-color);
+            height: 120px;
+        }
+
+        .stat-title {
+            color: var(--light-text);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-change {
+            font-size: 12px;
+            color: #00b894;
+        }
+
+        /* Graph Cards */
+        .graph-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .graph-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        .graph-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .graph-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .graph-container {
+            background: var(--background);
+            border-radius: 8px;
+            padding: 20px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .half-width {
+            grid-column: span 6;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-primary {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .full-width .graph-container {
+            height: 400px;
+        }
+
+        .half-width .graph-container {
+            height: 300px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .stat-card {
+                grid-column: span 4;
+            }
+            
+            .half-width {
+                grid-column: span 12;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stat-card {
+                grid-column: span 6;
+            }
+            
+            .dashboard-wrapper {
+                padding: 15px;
+            }
+            
+            .top-bar {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stat-card {
+                grid-column: span 12;
+            }
+            
+            .page-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <h1 class="page-title">Overview Dashboard</h1>
+            <div class="user-menu">
+                <a href="{{ url_for('home') }}" class="back-button">
+                    <i class="fa fa-home"></i> Back to Home
+                </a>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <div class="stat-title">Total Grievances</div>
+                <div class="stat-value">{{graph51|safe}}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Active States</div>
+                <div class="stat-value">28</div>
+                <div class="stat-change">All states covered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Sectors</div>
+                <div class="stat-value">8</div>
+                <div class="stat-change">All sectors active</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Data Accuracy</div>
+                <div class="stat-value">95%</div>
+                <div class="stat-change">High quality data</div>
+            </div>
+        </div>
+
+        <!-- Graph Cards -->
+        <div class="dashboard-grid">
+            <div class="graph-card full-width">
+                <div class="graph-card-header">
+                    <h3 class="graph-title">Monthly Trend of Farmer Queries</h3>
+                    <div class="graph-actions">
+                        <button class="btn btn-outline-primary">Export</button>
+                    </div>
+                </div>
+                <div class="graph-container">
+                    {{graph52|safe}}
+                </div>
+            </div>
+
+            <div class="graph-card half-width">
+                <div class="graph-card-header">
+                    <h3 class="graph-title">Top 10 States by Grievances</h3>
+                    <div class="graph-actions">
+                        <button class="btn btn-outline-primary">Export</button>
+                    </div>
+                </div>
+                <div class="graph-container">
+                    {{graph53|safe}}
+                </div>
+            </div>
+
+            <div class="graph-card half-width">
+                <div class="graph-card-header">
+                    <h3 class="graph-title">Sector-wise Grievance Share</h3>
+                    <div class="graph-actions">
+                        <button class="btn btn-outline-primary">Export</button>
+                    </div>
+                </div>
+                <div class="graph-container">
+                    {{graph54|safe}}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

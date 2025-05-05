@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-container" style="min-height: 100vh; background: #f8f9fa;">
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" style="width: 250px; background: #2E8B57; color: white; height: 100vh; position: fixed; left: 0; top: 0; padding-top: 80px;">
+        <div class="sidebar-header" style="padding: 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
+            <h3 style="color: white; margin: 0;">Dashboard</h3>
+        </div>
+        <ul class="sidebar-menu" style="list-style: none; padding: 0; margin: 0;">
+            <li style="padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <a href="{{ url_for('dashboard') }}" style="color: white; text-decoration: none; display: flex; align-items: center;">
+                    <i class="fas fa-home" style="margin-right: 10px;"></i>
+                    Overview
+                </a>
+            </li>
+            <li style="padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <a href="{{ url_for('grievances') }}" style="color: white; text-decoration: none; display: flex; align-items: center;">
+                    <i class="fas fa-exclamation-circle" style="margin-right: 10px;"></i>
+                    Grievances
+                </a>
+            </li>
+            <li style="padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <a href="{{ url_for('analytics') }}" style="color: white; text-decoration: none; display: flex; align-items: center;">
+                    <i class="fas fa-chart-bar" style="margin-right: 10px;"></i>
+                    Analytics
+                </a>
+            </li>
+            <li style="padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <a href="{{ url_for('reports') }}" style="color: white; text-decoration: none; display: flex; align-items: center;">
+                    <i class="fas fa-file-alt" style="margin-right: 10px;"></i>
+                    Reports
+                </a>
+            </li>
+            <li style="padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <a href="{{ url_for('settings') }}" style="color: white; text-decoration: none; display: flex; align-items: center;">
+                    <i class="fas fa-cog" style="margin-right: 10px;"></i>
+                    Settings
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content" style="margin-left: 250px; padding: 20px;">
+        <!-- Top Navigation Bar -->
+        <div class="top-nav" style="background: white; padding: 15px 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+            <div class="search-bar" style="flex: 1; max-width: 400px;">
+                <input type="text" placeholder="Search..." style="width: 100%; padding: 8px 15px; border: 1px solid #ddd; border-radius: 5px; outline: none;">
+            </div>
+            <div class="user-info" style="display: flex; align-items: center;">
+                <div class="notifications" style="margin-right: 20px; position: relative;">
+                    <i class="fas fa-bell" style="font-size: 20px; color: #666;"></i>
+                    <span class="notification-badge" style="position: absolute; top: -5px; right: -5px; background: #ff4444; color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 12px; display: flex; align-items: center; justify-content: center;">3</span>
+                </div>
+                <div class="user-profile" style="display: flex; align-items: center;">
+                    <img src="{{ url_for('static', filename='images/user-avatar.png') }}" alt="User" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
+                    <span style="color: #333; font-weight: 500;">John Doe</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            {% block dashboard_content %}
+            <!-- Content will be inserted here by child templates -->
+            {% endblock %}
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block css %}
+<style>
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+            padding-top: 0;
+        }
+        .main-content {
+            margin-left: 0;
+        }
+        .top-nav {
+            flex-direction: column;
+            gap: 15px;
+        }
+        .search-bar {
+            max-width: 100%;
+        }
+    }
+</style>
+{% endblock %} 

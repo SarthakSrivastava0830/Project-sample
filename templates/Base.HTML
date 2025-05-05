@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FarmEase - Your Agricultural Assistant</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.css') }}">
@@ -25,23 +25,16 @@
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">
-                            Edu Meeting
+                        <a href="{{ url_for('home') }}" class="logo">
+                            FarmEase
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-                            <li><a href="meetings.html">Meetings</a></li>
-                            <li class="scroll-to-section"><a href="#apply">Apply Now</a></li>
-                            <li class="has-sub">
-                                <a href="javascript:void(0)">Pages</a>
-                                <ul class="sub-menu">
-                                    <li><a href="meetings.html">Upcoming Meetings</a></li>
-                                    <li><a href="meeting-details.html">Meeting Details</a></li>
-                                </ul>
-                            </li>
-                            <li class="scroll-to-section"><a href="#courses">Courses</a></li>
+                            <li class="scroll-to-section"><a href="{{ url_for('home') }}" {% if request.path == '/' %}class="active"{% endif %}>Home</a></li>
+                            <li><a href="{{ url_for('signup') }}" {% if request.path == '/signup' %}class="active"{% endif %}>Signup</a></li>
+                            <li><a href="{{ url_for('login') }}" {% if request.path == '/login' %}class="active"{% endif %}>Login</a></li>
+                            <li><a href="{{ url_for('about') }}" {% if request.path == '/about' %}class="active"{% endif %}>About</a></li>
                             <li class="scroll-to-section"><a href="#contact">Contact Us</a></li>
                         </ul>
                         <a class='menu-trigger'>
